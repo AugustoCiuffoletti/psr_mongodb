@@ -1,43 +1,12 @@
-#!/usr/bin/python
 import sys
+import dns
 import pymongo
+from libri import libri
 
-libri = [
-    {
-        'scaffale': 'alto',
-        'autore': 'L. Sterne',
-        'titolo': 'The Life and Opinions of Tristam Shandy',
-        'prestito': False
-    },
-    {
-        'scaffale': 'medio',
-        'autore': 'Edward Morgan Forster',
-        'titolo': 'Passage to India',
-        'prestito': True
-    },
-    {
-        'scaffale': 'alto',
-        'autore': 'Charles Dickens',
-        'titolo': 'Great Expectations',
-        'prestito': False
-    },
-    {
-        'scaffale': 'basso',
-        'autore': 'Charles Dickens',
-        'titolo': 'Hard Times',
-        'prestito': False
-    }
-]
-
-### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
-
-uri = 'mongodb://augusto:asterix11@ds111066.mlab.com:11066/example' 
-# Connessione al server e 
-client = pymongo.MongoClient(uri)
-
-db = client.get_default_database()
-collezione = db['archivio']
-collezione.insert_many(libri)
-
-client.close()
+uri = 'mongodb+srv://<username>:<password>@examples.dfcdl.mongodb.net/<dbname>?retryWrites=true&w=majority' 
+client = pymongo.MongoClient(uri)   # Connessione al server
+db = client.get_default_database()  # Accesso al database
+collezione = db['archivio']         # Selezione della collezione
+collezione.insert_many(libri)       # Inserimento dall'array 'libri'
+client.close()                      # Chiusura della connessione
 

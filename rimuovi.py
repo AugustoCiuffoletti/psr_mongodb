@@ -1,10 +1,9 @@
 import sys
 import pymongo
 
-uri = 'mongodb://augusto:asterix11@ds111066.mlab.com:11066/example' 
-# Connessione al server e 
+uri = 'mongodb://user:password@ds111066.mlab.com:11066/example'  
 client = pymongo.MongoClient(uri)
 db = client.get_default_database()
-db.drop_collection('archivio')
+db.drop_collection('archivio')      # Rimozione della collezione 'archivio'
 client.close()
 
