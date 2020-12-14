@@ -6,7 +6,7 @@ uri = 'mongodb+srv://<username>:<password>@examples.dfcdl.mongodb.net/<dbname>?r
 client = pymongo.MongoClient(uri)    # Connessione al server
 db = client.get_default_database()   # Accesso al DB
 collezione = db['archivio']          # Selezione della collezione
-collezione.update(
+collezione.update_one(
    {'titolo': 'The Life and Opinions of Tristam Shandy'}, # selezione del documento
    {'$set': {'autore': 'Laurence Sterne'}}                # modifica
 )
